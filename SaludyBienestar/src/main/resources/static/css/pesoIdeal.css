@@ -1,0 +1,22 @@
+.img-ideal{
+	margin-top: 20px;
+}
+
+.title-img{
+	margin-top: 20px;
+	margin-bottom: 0;
+	font-style: italic;
+	color:coral;
+}
+
+.info-peso{
+	 margin-top: 15px;
+	
+}
+
+.info-user{
+		margin-top: 5px;
+		text-decoration: underline;
+		font-size: larger;
+		font-style: italic;
+}

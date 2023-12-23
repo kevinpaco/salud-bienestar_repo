@@ -1,0 +1,36 @@
+.test{
+	margin-top:20px;
+	background-color: rgba(0,0,0,.0);
+	border: 1px dashed rgb(128, 128, 128);
+	height: auto;
+}
+
+.test:hover{
+	margin-top:10px;
+	background-color: rgba(0,0,0,.0);
+	border: 1px dashed black;
+}
+
+.linkTest{
+	 font-style: italic;
+	 margin-top: 20px;
+	 margin-bottom: 0;
+	 border-bottom:1px solid black;
+}
+
+.linkTest a{
+	text-decoration: none;
+}
+
+.testim{
+	margin-top: 20px;
+}
+
+.texta{
+	margin-left: 0;
+	width: 500px;
+}
+
+.form{
+	margin-top: 20px;
+}

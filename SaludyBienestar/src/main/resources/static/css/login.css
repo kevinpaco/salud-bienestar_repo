@@ -1,0 +1,44 @@
+.grupoLogin{
+	margin-top: 30px;
+	font-family: monospace;
+	font-size: x-large;
+	font-style: italic;
+	font-weight: bold;
+	color:blue;
+	border: 1px solid black;
+    padding: 10px;	
+    border-radius: 10px;
+     box-shadow: 3px 4px 15px rgba(0, 0, 0, 1.50);	
+}
+
+
+.grupoLogin:hover{
+	margin-top: 30px;
+	font-family: monospace;
+	font-size: x-large;
+	font-style: italic;
+	font-weight: bold;
+	color:blue;
+	border: 1px solid black;
+    padding: 10px;	
+    border-radius: 10px;    
+    box-shadow: 3px 4px 15px rgba(119, 163, 69, 1.50);
+}
+
+.btn{
+	 margin-top: 10px;
+}
+
+.frase{
+	color:green;
+	font-style: italic;
+	font-weight: bold;
+	font-size: large;
+}
+
+.frase:hover{
+	color:#00b300;
+	font-style: italic;
+	font-weight: bold;
+	font-size: large;
+}

@@ -1,0 +1,20 @@
+#reseta{
+	 margin-top: 15px;
+	 margin-bottom: 15px;	
+	 height: 400px;
+}
+#reseta:hover{
+	 background-color: rgb(111, 111, 255);
+	 margin-top: 4px;
+	 margin-bottom: 4px;
+	 box-shadow: 3px 4px 15px rgba(0, 0, 0, 1.50);	
+}
+/*usar los media querys para controlar el tamaño pequeño de las tarjetas*/
+.btn{
+	margin-bottom: 5px;
+}
+
+.row{
+	margin-right: calc(0 * var(--bs-gutter-x));
+	margin-left: calc(0 * var(--bs-gutter-x));
+}

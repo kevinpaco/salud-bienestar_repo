@@ -1,0 +1,17 @@
+ .img{
+	padding-top: 0px;
+}
+
+.navbar-nav{
+	font-family: monospace;
+	font-size: x-large;	
+	font-style: italic;
+	font-weight: bold;
+}
+
+.dropdown-menu{
+	font-family: monospace;
+	font-size: large;	
+	font-style: italic;
+	font-weight: bold;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+       <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+      <meta charset="utf-8"/>
+       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+      <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/> 
+      <link rel="stylesheet" th:href="@{/icons/bootstrap-icons.css}"/>
+       <script th:src="@{/js/script.js}"></script>
+</head> 
+<body>
+		<header>
+			 <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#F0F8FF;">
+			  <div class="container-fluid">
+			    <a class=" navbar-brand" href="#"><img class="img col-md-6 col-4" th:src="@{/image/logo.png}"></a>
+			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			      <span class="navbar-toggler-icon"></span>
+			    </button>
+			    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+			      <ul class="navbar-nav ms-auto">
+			        <li class="nav-item">
+			          <a class="nav-link align-middle" aria-current="page" th:href="@{/salud-bienestar/principal/}+${usuId}"> Inicio</a>
+			        </li>
+			        <li class="nav-item">
+			        <a class="nav-link align-middle" th:if="${usuId == 0}" th:href="@{/salud-bienestar/usuario/form/}+${usuId}">Registrarme</a>
+			         <!--  <a class="nav-link" th:href="@{/salud-bienestar/usuario/form/0}">Registrarme</a>-->
+			        </li>
+			        <li class="nav-item">
+			          <a class="nav-link" th:href="@{/salud-bienestar/recetas(id=${usuId})}">Recetas</a>
+			        </li>
+			        <li class="nav-item">
+			          <a class="nav-link" th:href="@{/salud-bienestar/testimonios(id=${usuId})}">Testimonios</a>
+			        </li>
+			        <li class="nav-item dropdown">
+			          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			            Servicios
+			          </a>
+			          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+			                <a class="dropdown-item" th:if="${usuId == 0}" th:href="@{/salud-bienestar/loggin(log='/IMC/calculadora/')}">Cacular (IMC)</a>
+			                <a class="dropdown-item" th:if="${usuId != 0}" th:href="@{/salud-bienestar/IMC/calculadora/}+${usuId}">Cacular (IMC)</a>
+			            </li> 
+			            <li>
+			               <a class="dropdown-item" th:if="${usuId == 0}" th:href="@{/salud-bienestar/loggin(log='/IMC/peso-ideal/')}">Peso Ideal</a>
+			               <a class="dropdown-item" th:if="${usuId != 0}" th:href="@{/salud-bienestar/IMC/peso-ideal/}+${usuId}">Peso Ideal</a>
+			            </li>
+			             <li>
+			               <a class="dropdown-item" th:if="${usuId == 0}" th:href="@{/salud-bienestar/loggin(log='/principal/')}">Administrador</a>
+			            </li>
+			            <li>
+			               <a class="dropdown-item" th:if="${usuId != 0}" th:href="@{/salud-bienestar/inicio}">Salir</a>
+			            </li>
+			          </ul>
+			        </li>
+			        <li th:if="${usuId == 1}" class="nav-item dropdown">
+			          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			            ADMIN (gestion)
+			          </a>
+			          <ul  class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+			                <a th:if="${usuId == 1}" class="dropdown-item" th:href="@{/salud-bienestar/gestion/usuarios/}+${usuId}">Usuarios</a>			     
+			            </li> 
+			            <li>
+			               <a th:if="${usuId == 1}" class="dropdown-item" th:href="@{/salud-bienestar/gestion/testimonios/}+${usuId}">Testimonios</a>
+			            </li>
+			             <li>
+			               <a th:if="${usuId == 1}" class="dropdown-item" th:href="@{/salud-bienestar/gestion/recetas/}+${usuId}">Recetas</a>
+			            </li>
+			          </ul>
+			        </li>
+			        
+			      </ul>
+			    </div>
+			  </div>
+			</nav>
+		</header>
+		<div id="modalContainer"></div>
+		<script src="/webjars/jquery/3.6.0/jquery.min.js" type="text/javascript"> </script>
+		<script src="/webjars/popper.js/2.9.3/umd/popper.min.js" type="text/javascript"> </script>
+		<script src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js" type="text/javascript"> </script>
+</body>
+</html>

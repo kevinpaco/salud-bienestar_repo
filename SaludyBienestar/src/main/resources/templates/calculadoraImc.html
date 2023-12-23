@@ -1,0 +1,111 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+       <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+      <meta charset="utf-8"/>
+      <title>inicio</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/inicio.css}"/> 
+</head>
+<body id="bodyInicio">
+      <div class="container">        
+        <header th:replace="~{../static/layouts/header :: header(usuId=${userId})}" class="container-fluid"></header>
+          <div class="row">	         	         
+          <section class="col-12 col-md-9">
+          <div class="informacion">
+          <h1>Calculadora del índice de masa corporal (IMC)</h1>
+          <p>El sobrepeso puede causar la elevación de la concentración de colesterol total y de la presión arterial, 
+          y aumentar el riesgo de sufrir la enfermedad arterial coronaria. La obesidad aumenta las probabilidades de que se presenten otros factores de riesgo cardiovascular, 
+          en especial, presión arterial alta, colesterol elevado y diabetes.</p>
+          </div>
+          <hr>
+          <div class="informacion">
+           <img class="image col-10 offset-1"  th:src="@{/image/valansa.jpg}"/>
+             <hr>
+              <p>Una medida de la obesidad se determina mediante el índice de masa corporal (IMC), 
+              que se calcula dividiendo los kilogramos de peso por el cuadrado de la estatura en metros (IMC = peso (kg)/ [estatura (m)]2. 
+              Según el Instituto Nacional del Corazón, los Pulmones y la Sangre de los Estados Unidos (NHLBI), el sobrepeso se define como un IMC de más de 25. 
+              Se considera que una persona es obesa si su IMC es superior a 30. Usted puede determinar su IMC con la calculadora que se encuentra a continuación. 
+              Con la cifra del IMC puede averiguar su composición corporal en la tabla que aparece debajo de la calculadora.</p>
+          </div>
+          <div class="col-10 offset-1 col-md-9 offset-md-1" th:object="${usuarioId}">
+             <!--<input th:value="${usuarioId}">-->
+              <form class="form" th:action="@{/salud-bienestar/IMC/}+${usuarioId}" method="POST" th:object="${dato}">
+                 <h5>Para calcular su indice de masa corporal, Ingrese su estatura y peso</h5>
+                 <h6>Sistema Metrico</h6>
+                 <div>
+                    <label>Su estatura</label><br>
+                    <small>en centimetros:</small>
+                    <input type="number" class="form-control" th:field="*{usuario.estatura}" disabled>
+                 </div>
+                 <div>
+                    <label>Peso</label><br>
+                    <small>en kilogramos: </small>
+                    <input type="number" class="form-control" th:field="*{estado}">
+                 </div>
+                 <div class="col-12">
+		         <button class="btn btn-primary" >Enviar</button>
+		         </div>
+              </form>
+              Su ultimo IMC Resultado:<input type:"number" class="form-control" th:value="${resul}" disabled>
+          </div>
+            <div>
+              <table class="table table-striped">
+				  <h4 style="margin-top: 20px;">Su historial</h4>
+				  <thead>
+				    <tr>
+				      <th scope="col">Fecha de Ultimo IMC</th>
+				      <th scope="col">Estado(IMC)</th>				      
+				    </tr>
+				  </thead>
+				  <tbody >
+				    <tr th:each="imc:${masa}">
+				      <td th:text="${imc.fechaImc}"></td>
+				      <td th:text="${imc.estado}"></td>
+				    </tr>			
+				  </tbody>
+				</table>
+          </div>
+          <hr>
+          <div>
+              <table class="table table-striped">
+				  <h4>Utilice la tabla que se presenta a continuación para ver en qué categoría encaja su IMC</h4>
+				  <thead>
+				    <tr>
+				      <th scope="col">Composicion Corporal</th>
+				      <th scope="col">Indice de masa corporal(IMC)</th>				      
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td >Peso inferior a normal</td >
+				      <td>Menos de 18.5</td>
+				    </tr>
+				    <tr>
+				      <td >Normal</td >
+				      <td>18.5 - 24.9</td>
+				    </tr>
+				    <tr>
+				      <td >Peso superior a normal</td >
+				      <td>25.0 - 29.9</td>
+				    </tr>
+				    <tr>
+				      <td >Obesidad</td >
+				      <td>Mas de 30.0</td>
+				    </tr>
+			
+				  </tbody>
+				</table>
+          </div>
+          </section>
+          <div class="col-md-3 col-12" >
+                <aside th:replace="../static/layouts/aside :: aside">  </aside> 
+           </div> 
+          </div>
+        <footer th:replace="~{../static/layouts/footer :: footer}"></footer>
+      </div>
+      
+      <script src="/webjars/jquery/3.6.0/jquery.min.js" type="text/javascript"> </script>
+		<script src="/webjars/popper.js/2.9.3/umd/popper.min.js" type="text/javascript"> </script>
+		<script src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js" type="text/javascript"> </script>
+</body> 
+</html>

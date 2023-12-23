@@ -1,0 +1,76 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+       <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+      <meta charset="utf-8"/>
+      <title>inicio</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/inicio.css}"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/testimonios.css}"/> 
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"> 
+</head>
+<body id="bodyInicio">
+        <div class="container">        
+           <header th:replace="~{../static/layouts/header :: header(usuId=${userId})}" class="container-fluid"></header>
+             <div class="row">
+                 <div class="col-md-4 offset-md-1 col-12">
+                     <form class="form" th:action="@{/salud-bienestar/gestion/usuarios/}+${userId}">
+                          <div>
+                               <label class="form-label filtro">Filtrar por Email: </label>
+                               <input type="text" name="email" class="form-control" id="email" th:value="${email}" placeholder="Ingrese email" required>
+                          </div>
+                          <p th:if="${existe == 0 }" class="noExiste">Usuario No Existe</p>
+                          <div class="botones">
+                              <button type="submit" class="btn btn-success">Filtrar</button>                            
+                              <button type="button" class="btn btn-secondary " onclick="limpiarCampos()">Limpiar</button>
+                         </div> 
+                      </form>
+                 </div>	   
+                   	         
+                 <div class="col-md-10 offset-md-1 col-12">
+                    <table class="table table-success table-hover">
+						  <thead>
+						    <tr>
+						      <th scope="col" >Nombre</th>
+						       <th scope="col">Apellido</th>
+						      <th scope="col">Telefono</th>
+						      <th scope="col">Email</th>
+						      <th scope="col">Fecha de Nacimiento</th>
+						      <th scope="col">Genero</th>
+						       <th scope="col">Estatura</th>
+						       <th scope="col">Opciones</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr th:each="usu:${usus}">
+						      <th scope="row" th:text="${usu.nombre}" ></th>
+						      <th scope="row" th:text="${usu.apellido}" ></th>
+						      <td th:text="${usu.telefono}"></td>
+						      <td th:text="${usu.email}"></td>
+						      <td th:text="${usu.fechaNacimiento}"></td>
+						      <td th:text="${usu.sexo}"></td>
+						      <td th:text="${usu.estatura}"></td>
+						      <td>
+						           <form  th:if="${usu.id != 1}" th:action="@{/salud-bienestar/gestion/usuarios/modificar/}+${userId}">
+                                         <input type="hidden" name="idu" th:value="${usu.id}">
+                                        <button type="submit" class="btn btn-success"><i class="bi bi-pencil-square"></i></button>
+                                    </form>
+						          <a  th:if="${usu.id != 1}" class="btn btn-danger" th:href="@{/salud-bienestar/gestion/usuario/eliminar/}+${usu.id}"><i class="bi bi-trash3"></i></a>
+						      </td>
+						    </tr>
+						  </tbody>
+						</table>
+                 </div>
+             </div>
+               <footer th:replace="~{../static/layouts/footer :: footer}"></footer>
+         </div>
+           <script>          
+           function limpiarCampos(){
+        	  // const id = document.getElementById('userId').value = model.getAttribute('userId');
+	          window.location="/salud-bienestar/gestion/usuarios/1";
+              } 
+     </script>
+      <script src="/webjars/jquery/3.6.0/jquery.min.js" type="text/javascript"> </script>
+		<script src="/webjars/popper.js/2.9.3/umd/popper.min.js" type="text/javascript"> </script>
+		<script src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js" type="text/javascript"> </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+       <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+      <meta charset="utf-8"/>
+      <title>inicio</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/inicio.css}"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/formUsuario.css}"/> 
+</head>
+<body id="bodyInicio">
+      <div class="container">        
+        <header th:replace="~{../static/layouts/header :: header(usuId=${usuId})}" class="container-fluid"></header>
+          <div class="row">	   
+        
+          <div class="col-sm-8 offset-sm-2">      	         
+           <form class="row  needs-validation formulario" novalidate th:action="@{/salud-bienestar/usuario/guardar}" method="POST" th:object="${dato}">
+		   <div class="text-center titleForm">
+		     <h4 th:if="${id == 0}">Registro de Usuario</h4>
+		     <h4 th:unless="${id == 0}">Mis Datos</h4>
+		   </div>
+		   <div class="col-md-6">
+		    <label for="validationServer01" class="form-label">Nombre: </label>
+		    <input type="text" class="form-control " id="validationServer01" th:field="*{nombre}" placeholder="Ingrese nombre" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+		  </div>
+		  <div class="col-md-6">
+		    <label for="validationServer02" class="form-label">Apellido: </label>
+		    <input type="text" class="form-control" id="validationServer02" th:field="*{apellido}" placeholder="Ingrese Apellido" required>
+		    <div class="text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
+		  </div>  
+		 <div class="col-md-6">
+		    <label for="validationServerUsername" class="form-label">Email: </label>
+		    <div class="input-group has-validation">
+		      <span class="input-group-text" id="inputGroupPrepend3">@</span>
+		      <input type="text" class="form-control" id="validationServerUsername" placeholder="Ingrese email" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" th:field="*{email}" required>
+     	   </div>
+     	   <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+		  </div>
+		  <div class="col-md-6">
+		    <label for="validationServer02" class="form-label">Numero Celular: </label>
+		    <input type="number" class="form-control" id="validationServer02" th:field="*{telefono}" placeholder="Ingrese numero celular" required>
+		   <div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
+		  </div>
+		  <div class="col-md-6">
+		    <label for="validationServer02" class="form-label">Fecha: </label>
+		    <input type="date" class="form-control" id="validationServer02" th:field="*{fechaNacimiento}" max="2015-12-31" required>
+		    <div class="text-danger" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
+		  </div>
+		  <div class="col-md-6">
+		    <label for="validationServer02" class="form-label">Estatura (cm): </label>
+		    <input type="number" class="form-control" id="validationServer02" th:field="*{estatura}" required>
+		    <div class="text-danger" th:if="${#fields.hasErrors('estatura')}" th:errors="*{estatura}"></div>
+		  </div>		   
+		   <div class="col-12">
+		    <label class="form-label">Genero: </label>
+		    <div class="form-check">
+		        <input class="form-check-input" type="checkbox" id="masculinoCheck" name="sexo" value="Masculino" aria-describedby="sexoFeedback" required th:checked="${dato.sexo == 'Masculino'}">
+		        <label class="form-check-label" for="masculinoCheck">
+		            Masculino
+		        </label><br>
+		        <input class="form-check-input" type="checkbox" id="femeninoCheck" name="sexo" value="Femenino" aria-describedby="sexoFeedback" required th:checked="${dato.sexo == 'Femenino'}">
+		        <label class="form-check-label" for="femeninoCheck">
+		            Femenino
+		        </label>
+		        <div class="text-danger" th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></div>
+		    </div>
+		</div>
+		  <div class="col-12">
+		    <button class="btn btn-primary" >Enviar</button>
+		  </div>
+		</form>
+          </div>
+          </div>
+          
+          <footer th:replace="~{../static/layouts/footer :: footer}"></footer>
+      </div>
+      <script>
+		    const checkboxes = document.querySelectorAll('input[type="checkbox"][name="sexo"]');
+		    checkboxes.forEach(checkbox => {
+		        checkbox.addEventListener('change', () => {
+		            checkboxes.forEach(cb => {
+		                if (cb !== checkbox) {
+		                    cb.checked = false;
+		                }
+		            });
+		        });
+		    });
+		</script> 
+       <script src="/webjars/jquery/3.6.0/jquery.min.js" type="text/javascript"> </script>
+		<script src="/webjars/popper.js/2.9.3/umd/popper.min.js" type="text/javascript"> </script>
+		<script src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js" type="text/javascript"> </script>
+</body> 
+</html>

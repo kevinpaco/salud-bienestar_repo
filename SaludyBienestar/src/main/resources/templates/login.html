@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+       <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+      <meta charset="utf-8"/>
+      <title>inicio</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/inicio.css}"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/> 
+</head>
+<body id="bodyInicio">
+      <div class="container">        
+        <header th:replace="~{../static/layouts/header :: header(usuId=${userId})}" class="container-fluid"></header>
+          <div class="row">	         	         
+	          <section class="col-md-9 col-12">
+	               <form class="form col-12 col-md-5 offset-md-4" th:action="@{/salud-bienestar/confirmar}" method="POST" th:object="${codUnique}">
+                
+	                  <div class="grupoLogin">
+	                   <label class="form-label label">Ingrese su codigo unico: </label>
+	                   <input type="text" class="form-control" th:field="*{codigoUnico}" placeholder="Ingrese codigo unico" required>
+	                   <p th:if="${existe == 0}">No existe</p>
+	                    <button type="submit" class="btn btn-info">Confirmar</button>
+	                  </div> 
+	                 
+	               </form>
+	               <div>
+	                   <p class="frase">"TRATA A TU CUERPO COMO UN TEMPLO Y NO COMO UN DEPÓSITO DE BASURA. SU CUERPO DEBE SER UN BUEN SISTEMA DE SOPORTE 
+	                      PARA LA MENTE Y EL ESPÍRITU. SI LO CUIDAS LO SUFICIENTE, TU CUERPO TE PUEDE LLEVAR A DÓNDE QUIERES IR, CON EL PODER
+	                      , LA FORTALEZA, LA ENERGÍA Y LA VITALIDAD QUE NECESITARÁS PARA LLEGAR."</p>
+	                    <p class="frase">“TU CUERPO ES UNA OBRA MAESTRA DE LA NATURALEZA. ES FUERTE, RESISTENTE Y CAPAZ DE GRANDES COSAS.
+	                     AMATE A TU MISMO POR LO QUE ERES, TANTO POR TUS DEFECTOS COMO POR TUS VIRTUDES.”</p>
+	                     <P class="frase">"TU CUERPO ES EL VEHÍCULO DE TU ALMA, TE LLEVA A DONDE QUIERES IR Y TE PERMITE EXPERIMENTAR EL MUNDO. CUIDA DE ÉL Y ÁMALO COMO LO HÁRIAS CON UN AMIGO CERCANO."</P>
+	               </div>
+	          </section>
+	          <div class="col-md-3 col-12" >
+                <aside th:replace="../static/layouts/aside :: aside">  </aside> 
+           </div> 
+          </div>
+          
+        <footer th:replace="~{../static/layouts/footer :: footer}"></footer>
+      </div>
+      
+      <script src="/webjars/jquery/3.6.0/jquery.min.js" type="text/javascript"> </script>
+		<script src="/webjars/popper.js/2.9.3/umd/popper.min.js" type="text/javascript"> </script>
+		<script src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js" type="text/javascript"> </script>
+</body> 
+</html>

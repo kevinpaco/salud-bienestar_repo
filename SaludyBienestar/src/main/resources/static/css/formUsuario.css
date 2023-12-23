@@ -1,0 +1,33 @@
+.text-danger{
+	font-size:small;
+	font-style:italic ;
+	font-weight: bold;
+}
+
+.ingre{
+	margin-top: 15px;
+	
+}
+
+.ingre label{
+	font-family: monospace;
+	font-size: x-large;
+	font-style:italic;
+	color: blue; 
+}
+
+.ingre button{
+	margin-top: 5px;
+}
+
+.formulario{
+	
+	border-radius: 6px;	
+}
+
+.formulario .form-label{
+	font-family: monospace;
+	font-style: italic;
+	font-size: x-large;
+	color: blue;
+}
