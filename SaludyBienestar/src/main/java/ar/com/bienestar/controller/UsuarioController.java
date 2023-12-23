@@ -69,7 +69,6 @@ public class UsuarioController {
 			Model model){
 		 if(bindingResult.hasErrors()) {
 			 model.addAttribute("dato",usuario);
-			 System.out.println("es: "+usuario.getNombre()); 
 			 model.addAttribute("usuId",this.idUser);
 			 return "formUsuario";
 		 }else { 
@@ -81,8 +80,7 @@ public class UsuarioController {
 	
 	@GetMapping("/gestion/usuarios/modificar/{id}") 
 	public String modificarUsuario(@PathVariable("id")int id,@Param("idu")String idu,Model model){
-		
-	//	System.out.println("ussss: "+idu);
+	
 		Usuario buscarUsu = this.usuService.buscarUsuario(Integer.parseInt(idu));
 		
 		model.addAttribute("usuId", id);

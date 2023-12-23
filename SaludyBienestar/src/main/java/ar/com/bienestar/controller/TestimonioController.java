@@ -59,7 +59,7 @@ public class TestimonioController {
 	
 	@PostMapping("/testimonio/guardar")
 	public String setTestimonio(@ModelAttribute("testimonio")Testimonio testimonio,@RequestParam("id")int userId,Model model) {
-		System.out.println("id ususs: "+userId);
+	
 		Usuario usu  = this.userService.buscarUsuario(userId);
 		testimonio.setFecha(LocalDate.now());
 		testimonio.setUsuario(usu);
@@ -68,23 +68,6 @@ public class TestimonioController {
 		
 		return "redirect:/salud-bienestar/testimonios?id="+userId;
 	}
-	
-	/*@PostMapping("/testimonio/{idUsu}")
-	public ResponseEntity<?> guardarTestimonio(@RequestBody Testimonio testimonio,@PathVariable("idUsu")int idusu){
-		Map<String,Object> response= new HashMap<String,Object>();
-		try {		
-			Usuario user= userService.buscarUsuario(idusu);
-			testimonio.setUsuario(user);
-			
-			response.put("Objeto", testService.guardarTestimonio(testimonio) );
-			response.put("msg: ", "Se guardo testimonio");
-		} catch (Exception e) {
-			// TODO: handle exception
-			response.put("ERROR: ", e.getMessage());
-			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
-	}*/
 	
 	@GetMapping("/gestion/testimonios/{id}")
 	public String listarTestimonios(@PathVariable("id")int id,@Param("email")String email,Model model){
@@ -98,23 +81,7 @@ public class TestimonioController {
 			model.addAttribute("testimonios", listTest);
 		}
 	   model.addAttribute("userId",id);
-	   System.out.println("list Test: "+listTest.size());
 		return "gestionTestimonios";
-	}
-	
-	@PutMapping("/testimonio/{id}")
-	public ResponseEntity<?> actualizarTestimonio(@PathVariable("id")int id){
-		Map<String,Object> response= new HashMap<String,Object>();
-		try {
-			Testimonio test= testService.buscarTestimonio(id);
-			response.put("Objeto", test  );
-			response.put("msg: ", "Se encontro el testimonio");
-		} catch (Exception e) {
-			// TODO: handle exception
-			response.put("ERROR: ", e.getMessage());
-			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
 	@GetMapping("/testimonio/eliminar/{id}")

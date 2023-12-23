@@ -43,20 +43,6 @@ public class MasaCorporalController {
 	@Autowired
 	UsuarioService usuSer;
 	
-	@GetMapping("/IMCs")
-	public ResponseEntity<?> listIMCs(){
-		Map<String, Object> response= new HashMap<String,Object>();
-		try {
-			 response.put("Objeto", this.masaSer.listMasaCorporal());
-			 response.put("Msg: ", "Se obtubo la lista de Masa Corporal");
-		} catch (ModelException e) {
-			// TODO: handle exception
-			response.put("Error: ", e.getMessage());
-			return new ResponseEntity<Map<String, Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<Map<String,Object>>(response, HttpStatus.OK);
-	}
-	
 	@GetMapping("/IMC/calculadora/{id}")
 	public String calImc(@PathVariable("id")int id,Model model) {
 		if(id==0) {			
@@ -102,34 +88,6 @@ public class MasaCorporalController {
 	        this.masaSer.guardarIndice(masa, usuarioId, peso);
 	    	return "redirect:/salud-bienestar/IMC/calculadora/"+usuarioId;
 	    }
-	}
-	
-	@PutMapping("/IMC/{id}")
-	public ResponseEntity<?> actualizarIMC(@PathVariable("id")int id){
-		Map<String, Object> response= new HashMap<String,Object>();
-		try {
-			 response.put("Objeto", this.masaSer.buscarMasaCorporal(id));
-			 response.put("Msg: ", "Se Actualizo Masa Corporal");
-		} catch (ModelException e) {
-			// TODO: handle exception
-			response.put("Error: ", e.getMessage());
-			return new ResponseEntity<Map<String, Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<Map<String,Object>>(response, HttpStatus.OK);
-	}
-	
-	@DeleteMapping("/IMC/eliminar/{id}")
-	public ResponseEntity<?> listIMCs(@PathVariable("id")int id){
-		Map<String, Object> response= new HashMap<String,Object>();
-		try {
-			 response.put("Objeto", this.masaSer.eliminarMaraCorporal(id));
-			 response.put("Msg: ", "Se elimino Masa Corporal");
-		} catch (ModelException e) {
-			// TODO: handle exception
-			response.put("Error: ", e.getMessage());
-			return new ResponseEntity<Map<String, Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<Map<String,Object>>(response, HttpStatus.OK);
 	}
 	
 	///PESO IDEAL

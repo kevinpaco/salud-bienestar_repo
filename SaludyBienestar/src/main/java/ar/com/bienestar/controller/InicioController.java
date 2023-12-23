@@ -56,7 +56,6 @@ public class InicioController {
 	public String loginWeb(@RequestParam(name="log",required=false)String op, Model model) {
 		String codUnique="";
 		this.redirigir=op;
-		System.out.println("rediri: "+op);
 		model.addAttribute("opc", op);
 		//model.addAttribute("userId",0);
 		model.addAttribute("userId",this.idUser);
@@ -66,9 +65,7 @@ public class InicioController {
 	
 	@PostMapping("/confirmar")
 	public String confirmWeb(@ModelAttribute("codUnique")Usuario codUnique,Model model) {
-		System.out.println("esss: "+codUnique.getCodigoUnico());
 		Usuario user = this.userSer.buscarPorCodigoUnico(codUnique.getCodigoUnico());
-		System.out.println("nombre: "+user.getNombre()+" "+user.getApellido());
 	
 		if(!codUnique.getCodigoUnico().equals(user.getCodigoUnico()) ) {
 			model.addAttribute("existe", 0);
@@ -77,17 +74,4 @@ public class InicioController {
 		    return "redirect:/salud-bienestar"+redirigir+user.getId();
 		}
 	}
-	
-	/*@PostMapping("/usuario/nuevo")
-	public String guardarUsuario(@Validated @ModelAttribute("dato") Usuario usuario,BindingResult bindingResult,
-			Model model){
-		 if(bindingResult.hasErrors()) {
-			 model.addAttribute("usuDato",usuario);
-			 return "redirect:/salud-bienestar/inicio";
-		 }else {
-			 //Usuario usu=usuService.guardarUsuario(usuario);
-			 System.out.println("LLego: ");
-			 return "redirect:/salud-bienestar/inicio";
-		 }
-	}*/
 }

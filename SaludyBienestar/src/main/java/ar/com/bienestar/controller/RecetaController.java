@@ -85,12 +85,6 @@ public class RecetaController {
 	@GetMapping("/formulario/receta/{id}")
 	public String recetaForm(@PathVariable("id")int id,@Param("ingredient")String ingredient,Model model) {
 	   
-		/*if(ingredient!=null) {
-		      Ingrediente ing = new Ingrediente();
-		      ing.setNombre(ingredient);
-	        	System.out.println("ingre: "+ing.getNombre());
-	           /this.ingSer.guardarIngrediente(ing);
-		}*/
 		model.addAttribute("userId", this.idUser);
         model.addAttribute("receta", new Receta());
         model.addAttribute("ingrediente",new Ingrediente());
@@ -103,20 +97,16 @@ public class RecetaController {
 		if(ingredient!=null) {
 		      Ingrediente ing = new Ingrediente();
 		      ing.setNombre(ingredient);
-	        	System.out.println("ingre: "+ing.getNombre());
+	  
 	          this.ingSer.guardarIngrediente(ing);
-		}
-		
-	//			Ingrediente ingrediente = new Ingrediente();
-	//	ingrediente.setNombre(ing);
-		//this.ingredService.guardar(ingrediente);		
+		}		
 		return "redirect:/salud-bienestar/formulario/receta/"+id;
 	}
 	
 	@PostMapping("/guardar/receta")
 	public String crearReceta(@Validated @ModelAttribute("receta") Receta receta,BindingResult bindingResult
 			,Model model){
-		//  System.out.println("img: "+receta.getNombre());
+		
 		  if(bindingResult.hasErrors()) {
 			  model.addAttribute("receta",receta);
 			  return "formReceta";
@@ -146,7 +136,6 @@ public class RecetaController {
 		if(ingredient!=null) {
 		      Ingrediente ing = new Ingrediente();
 		      ing.setNombre(ingredient);
-	        	System.out.println("ingre: "+ing.getNombre());
 	           this.ingSer.guardarIngrediente(ing);
 		}
 		
@@ -166,7 +155,6 @@ public class RecetaController {
         model.addAttribute("ingId", res.getId());
         model.addAttribute("ingrediente",new Ingrediente());
         for (Ingrediente ing : Componenete.getIngredientes()) {
-        	System.out.println("nanoo: "+ing.getNombre());
 		     res.getIngredientes().add(ing);    
 		}
         model.addAttribute("ings",res.getIngredientes());
