@@ -18,7 +18,7 @@ import ar.com.bienestar.service.UsuarioService;
 public class InicioController {
 	
 	private int idUser=0;
-	private String redirigir;
+	private String redirigir; 
 	
 	@Autowired
 	UsuarioService userSer;
